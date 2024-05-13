@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container p-2 overflow-hidden " style="height: auto;">
+    <div class="container p-5 mt-5  rounded-3">
+        <br>
+        <div class="container rounded-3" ">
+            <h1>{{ post.title }}</h1>
+            <small>
+                By: {{ post.author.first_name }} {{ post.author.last_name }} • {{ post.post_date }} 
+                    
+                {% if user.is_authenticated %}
+                    {% if user.id == post.author.id %}
+                        - <a href='{% url 'updatepost' post.pk %}' class="a px-2"><button type="button" class="btn btn-primary btn-sm rounded-5">Edit</button></a>
+                        <a href='{% url 'deletepost' post.pk %}'><button type='submit', name='post_id', value='{{ post.id }}', class='btn btn-danger btn-sm rounded-5'>Delete</button></a>
+                    {% endif %}
+                {% endif %}
+                
+            </small><br>
+        </div>
+    
+    
+        <hr>
+        <br>
+        {{ post.body|safe }}
+        <hr>
+        <br>
+        <form action="{% url 'like_post' post.pk %}" method="POST">
+            {% csrf_token %}
+
+        {% if user.is_authenticated %}    
+            {% if liked %}
+                <button type='submit', name='post_id', value='{{ post.id }}', class='btn btn-danger btn-sm rounded-5'>Unlike</button>
+            {% else %}    
+                <button type='submit', name='post_id', value='{{ post.id }}', class='btn btn-primary btn-sm rounded-5'>Like</button>
+            {% endif %}
+        {% else %}
+        <small><a href="{% url 'login' %}">Login</a> to like.</small>
+        {% endif %}
+
+        <span class="px-1">&bull;</span> {{ total_likes }} Likes
+        </form>
+        <br><br>
+        <h3>Comments...</h3><hr>
+        {% if not post.comments.all %}
+            No comments yet ... <a href='{% url 'addcomment' post.pk %}' class="a px-3"><button type='submit' class='btn btn-success btn-sm rounded-5'>Add One</button></a>
+        {% else %}
+            <a href='{% url 'addcomment' post.pk %}'><button type='submit' class='btn btn-secondary btn-sm rounded-5'>Add Comment</button></a>
+            <br><br>
+                {% for comment in post.comments.all %}
+                <div class="container p-3 ">
+                    <strong>{{ comment.name }} - {{ comment.date_added }}</strong>
+                    <br>
+                    {{ comment.body }}
+                    <br>
+                    <hr>
+                </div>
+                    
+                {% endfor %}
+        {% endif %}
+        <br>
+        <br><br>
+    </div>
+    
+</div>
+    
+{% endblock %}

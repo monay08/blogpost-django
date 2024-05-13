@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+    <div class="container" style="height: 100vh;">
+        <br>
+        <h1>Delete Post</h1>
+        <br><br>
+        <h3>Delete: {{ post.title }}</h3>
+        <br>
+        <div class="form-group">
+            <form method='POST'>
+                {% csrf_token %}
+                <strong>Are you sure?</strong><br>
+                <button class='btn btn-secondary mt-3'>Yes, Delete</button>
+        </div> 
+    </div>
+       
+    {% else %}
+        You're not allowed to delete this post.
+    {% endif %}
+{% else %}
+You are not authorize to delete this post.
+{% endif %}
+
+{% endblock %}

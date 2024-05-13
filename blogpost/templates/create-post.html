@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="container overflow-hidden" style="height: 95vh;">
+    <br><h2>Create Post</h2><br>
+    <div class="form-group">
+        <form method='POST'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class='btn btn-secondary'>Save</button>
+    </div>    
+
+</div>
+<script>
+    var name = "{{ user.id }}";                           
+    document.getElementById("user").value = name;
+</script>
+    
+{% else %}
+    You are not authorize to edit this post.
+{% endif %}
+
+{% endblock %}
