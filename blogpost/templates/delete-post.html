@@ -2,22 +2,25 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
-    {% if user.id == post.author.id %}
-    <div class="container" style="height: 100vh;">
-        <br>
-        <h1>Delete Post</h1>
-        <br><br>
-        <h3>Delete: {{ post.title }}</h3>
-        <br>
-        <div class="form-group">
-            <form method='POST'>
-                {% csrf_token %}
-                <strong>Are you sure?</strong><br>
-                <button class='btn btn-secondary mt-3'>Yes, Delete</button>
-        </div> 
+<div class="container overflow-hidden" style="height: 100vh;">
+    <div class="form-group p-5">
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+            <div class="container" style="height: 100vh;">
+                <br>
+                <h2>Are you sure?</h2>
+                <br><br>
+                <h3>Your Post:</h3><h3 style="color: blue"> {{ post.title }}</h3>
+                <br>
+                <div class="form-group">
+                    <form method='POST'>
+                        {% csrf_token %}
+                        <hr>
+                        <button class='btn btn-danger'>Delete</button><button class='btn btn-light' onclick="history.back()">Back</button>
+                </div> 
+            </div>
     </div>
-       
+</div>       
     {% else %}
         You're not allowed to delete this post.
     {% endif %}

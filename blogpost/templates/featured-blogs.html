@@ -5,42 +5,32 @@
 <!-- Blog 4 - Bootstrap Brain Component -->
 
 <section class="py-3 py-md-5 py-xl-8 " >
-    <!-----LANDING----------------->
+    <!-----LANDING---->
     <div class="container rounded-3" style="height:65vh;">
         <!-- background-image: url('/static/img/daisy.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; -->
         
         <div class="row">
-          
         <div class="container col-12 col-md-10 col-lg-8">
           <div class="conside mt-5 justify-items-center">
               <h3 class="fs-5 mb-2 text-secondary text-uppercase">Blog</h3>
-              <h2 class="display-5 mb-4">Here is our blog's latest company news about regularly publishing fresh content.</h2>
-              
-              
-              <a href="{% url 'all'  %}"><button type="button" class="btn btn-lg btn-primary mb-3 mb-md-4 mb-xl-5 mt-5">All Blog Posts</button>   </a>
+              <h2 class="display-5 mb-4">Here is our blog's latest news about regularly publishing fresh content.</h2>
+                <a href="{% url 'all'  %}">
+                  <button type="button" class="btn btn-lg btn-primary mb-3 mb-md-4 mb-xl-5 mt-5">All Blog Posts</button>   
+                </a>
           </div>
-          
         </div>
       </div>
     </div>
 
-    <!--------------------------LANDING----------------->
-  
+    <!--LANDING---->
     <div class="container overflow-hidden p-5">
         <h1 class="fs-5 mb-2 text-secondary text-uppercase">Latest Posts</h1>
-
-        
           <article>
-           
-
-             <!-------------------------------------CARD ---------------------->
+             <!--------CARD ---->
              {% for post in object_list|slice:":5"  %}
-
-             
             <div class="card border-0 mb-3 shadow d-flex rounded-4">
               <div class="card-body border bg-white p-4 rounded-4">
                 <div class="entry-header mb-3">
-                  
                   <h2 class="card-title entry-title h4 mb-0">
                     <a class="link-dark text-decoration-none" href="{% url 'blogdetail' post.pk %}">{{post.title}}</a>
                   </h2>
@@ -49,9 +39,9 @@
                     {{ post.body|slice:":200"|safe }}. . .
                 </p>
                 <a href="{% url 'blogdetail' post.pk %}" class="btn btn-primary mt-4 text-nowrap entry-more">Read More</a>
-              </div>
+    </div>
 
-            <!----CARD FOOTER --------->
+            <!----CARD FOOTER -->
                         <div class="card-footer border border-top-0 bg-light p-4">
                             <ul class="entry-meta list-unstyled d-flex align-items-center m-0">
                             <li>
@@ -69,15 +59,11 @@
                             <li>
                                 <span class="px-3">{{ post.author.first_name }} {{ post.author.last_name }}</span>
                             </li>
-                            
-                            
-                            
                             </ul>
                         </div>
-                    </div>
-              <!----CARD FOOTER --------->
+              <!----CARD FOOTER -->
+              
               {% endfor %}
-
           </article>
     </div>
   </section>

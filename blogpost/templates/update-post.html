@@ -2,18 +2,22 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
-    {% if user.id == post.author.id %}
-        <br>
-        <h1>Update Post</h1>
-        <br><br>
+<div class="container overflow-hidden" style="height: 100vh;">
+    <div class="form-group p-5">
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                <br>
+                <h1>Update Post</h1>
+                <br><br>
 
-        <div class="form-group">
-            <form method='POST'>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class='btn btn-secondary'>Update</button>
-        </div> 
+                <div class="form-group">
+                    <form method='POST'>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class='btn btn-success'>Update</button><button class='btn btn-light' onclick="history.back()">Back</button><br><br>
+                </div> 
+    </div>
+</div>
     {% else %}
         You're not allowed to edit this post.
     {% endif %}

@@ -2,20 +2,16 @@
 
 {% block content %}
 <div class="container" style="height: 100vh;">
-
-   
     <div class="form-group p-5">
+
+        <button class='btn btn-light' onclick="history.back()">Back</button><br><br>
         <br><h2>Add Comment</h2><br>
         <form method='POST'>
             {% csrf_token %}
             {{ form.as_p }}
-            <button class='btn btn-secondary'>Ok</button>
+        <button class='btn btn-success'>Add</button>
+
     </div>
-
 </div>
-
-
-
-
 
 {% endblock %}
