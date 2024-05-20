@@ -1,19 +1,22 @@
 {% extends "base.html" %}
 {% block title %}Register{% endblock %}
 {% block content %}
-<div class="container" style="height: 90vh;">
-    
-    <div class="form-group p-5">
-        <h1>Register here!</h1>
-        <br>
-        <form method='POST'>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class='btn btn-secondary'>Register</button>
-    </div>
 
+<div class="container d-flex justify-content-center align-content-center pt-0 mt-5">
+    <div class="card shadow-lg m-5 rounded hoverable rounded-5" style="width: 40rem; height: auto; ">
+        <h1 class=" d-flex justify-content-center mt-3">Register here!</h1>
+        <div class="d-flex justify-content-center mt-3">
+            <div class="form-group p-5">
+                <form method='POST'>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-flex justify-content-center mt-5">
+                        <button class='btn btn-primary'>Register</button>
+                    </div>
+                </form>
+            </div>
+        </div> 
     </div>
-<br><br>
-
+</div>
 
 {% endblock %}

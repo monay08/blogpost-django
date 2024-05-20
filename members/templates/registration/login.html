@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}Login{% endblock %}
 {% block content %}
-<div class="container d-flex  overflow-y-hidden" style="height: 95vh;">
 
-    
-    <div class="form-group p-3 mt-5">
-    <br><br>
-    <h1>Login</h1>
-    <br>
-        <form method='POST'>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class='btn btn-secondary'>Login</button>
-    </div>  
-
+<div class="container d-flex justify-content-center align-content-center pt-0 mt-5">
+    <div class="card shadow-lg m-5 rounded hoverable rounded-5" style="width: 40rem; height: 25rem;">
+        <h1 class=" d-flex justify-content-center mt-3">Login</h1>
+            <div class="d-flex justify-content-center mt-3">
+                <form action="" method="post">    
+                    <div class="form-group p-3 mt-5">
+                        <form method='POST'>
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="d-flex justify-content-center mt-5">
+                                <button class='btn btn-success'>Login</button>
+                            </div>
+                        </form>
+                    </div>  
+                </form>
+            </div>
+    </div>
 </div>
-
 
 {% endblock %}
