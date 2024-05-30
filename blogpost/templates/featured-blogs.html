@@ -6,7 +6,7 @@
 
 <section class="py-3 py-md-5 py-xl-8 " >
     <!-----LANDING---->
-    <div class="container rounded-3" style="height:65vh;">
+    <div class="container overflow-hidden p-5">
         <!-- background-image: url('/static/img/daisy.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; -->
         
         <div class="row">
@@ -19,7 +19,7 @@
                 </a>
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <!--LANDING---->
@@ -39,30 +39,32 @@
                     {{ post.body|slice:":200"|safe }}. . .
                 </p>
                 <a href="{% url 'blogdetail' post.pk %}" class="btn btn-primary mt-4 text-nowrap entry-more">Read More</a>
-    </div>
 
-            <!----CARD FOOTER -->
-                        <div class="card-footer border border-top-0 bg-light p-4">
-                            <ul class="entry-meta list-unstyled d-flex align-items-center m-0">
-                            <li>
-                                <a class="fs-7 link-secondary text-decoration-none d-flex align-items-center" href="#!">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
-                                    <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" />
-                                    <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                                </svg>
-                                <span class="ms-2 fs-7">{{ post.post_date }}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <span class="px-3">&bull;</span>
-                            </li>
-                            <li>
-                                <span class="px-3">{{ post.author.first_name }} {{ post.author.last_name }}</span>
-                            </li>
-                            </ul>
-                        </div>
-              <!----CARD FOOTER -->
-              
+              <!----postdate|author -->
+                <br><br>
+                <hr>
+                <ul class="entry-meta list-unstyled d-flex align-items-center m-0">
+                  <li>
+                    <a class="fs-7 link-secondary text-decoration-none d-flex align-items-center" href="#!">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                        <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" />
+                        <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                      </svg>
+                      <span class="ms-2 fs-7">{{ post.post_date }}</span>
+                    </a>
+                  </li>
+                              
+                  <li>
+                    <span class="px-3">&bull;</span>
+                  </li>
+                  
+                  <li>
+                    <span class="px-3">{{ post.author.first_name }} {{ post.author.last_name }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>  
+            <br><br>          
               {% endfor %}
           </article>
     </div>

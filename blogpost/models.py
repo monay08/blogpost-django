@@ -28,4 +28,13 @@ class Comment(models.Model):
     def __str__(self):
         return '%s - %s' % (self.post.title, self.name)
     
+class BlogPost(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    likes = models.ManyToManyField(User, related_name='blogpost_like')
+
+    def number_of_likes(self):
+        return self.likes.count()
+    
+    
     

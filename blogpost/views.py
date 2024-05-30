@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Comment
+from .models import Post, Comment, BlogPost
 from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
+
 
 #def home(request):
 #    return render(request, 'home.html')
@@ -42,6 +43,7 @@ class Detail(DetailView):
         
         context['total_likes'] = total_likes
         context['liked'] = liked
+        context['likers'] = stuff.likes.all()
         return context
     
 class Create(CreateView):
