@@ -2,18 +2,18 @@
 
 {% block content %}
 <div class="container p-2 overflow-hidden " style="height: auto;">
-    <div class="container p-5 mt-0  rounded-3">
+    <div class="container p-5 mt-0 rounded-3">
         <button class='btn btn-light' onclick="history.back()">Go Back</button><br><br>
-        <div class="container rounded-3">
+        <div class="container rounded-4">
             <br>
             <h1>{{ post.title }}</h1>
             <small>
                 By: {{ post.author.first_name }} {{ post.author.last_name }} • {{ post.post_date }} 
-                    
+                
                 {% if user.is_authenticated %}
                     {% if user.id == post.author.id %}
                         <a href='{% url 'updatepost' post.pk %}' class="a px-2"><button type="button" class="btn btn-primary btn-sm rounded-5">Edit</button></a>
-                        <a href='{% url 'deletepost' post.pk %}'><button type='submit', name='post_id', value='{{ post.id }}', class='btn btn-danger btn-sm rounded-5'>Delete</button></a>
+                        <a href='{% url 'deletepost' post.pk %}'><button type='submit' name='post_id' value='{{ post.id }}' class='btn btn-danger btn-sm rounded-5'>Delete</button></a>
                     {% endif %}
                 {% endif %}
                 
@@ -27,18 +27,26 @@
         <hr>
         <form action="{% url 'like_post' post.pk %}" method="POST">
             {% csrf_token %}
-
-        {% if user.is_authenticated %}    
-            {% if liked %}
-                <button type='submit', name='post_id', value='{{ post.id }}', class='btn btn-danger btn-sm rounded-5'>Unlike</button>
-            {% else %}    
-                <button type='submit', name='post_id', value='{{ post.id }}', class='btn btn-primary btn-sm rounded-5'>Like</button>
+            
+            {% if user.is_authenticated %}    
+                {% if liked %}
+                    <button type='submit' name='post_id' value='{{ post.id }}' class='btn btn-danger btn-sm rounded-5'>Unlike</button>
+                {% else %}    
+                    <button type='submit' name='post_id' value='{{ post.id }}' class='btn btn-primary btn-sm rounded-5'>Like</button>
+                {% endif %}
+            {% else %}
+                <small><a href="{% url 'login' %}">Login</a> to like.</small>
             {% endif %}
-        {% else %}
-        <small><a href="{% url 'login' %}">Login</a> to like.</small>
-        {% endif %}
-
-        <span class="px-1">&bull;</span> {{ total_likes }} Likes
+            
+            <span class="px-1">&bull;</span> 
+            <span id="like-count">{{ total_likes }} Likes</span>
+            
+            <!-- Hidden list of likers -->
+            <div id="likers-list" class="bubble" style="display: none;">
+                {% for liker in likers %}
+                    <div>{{ liker.first_name }} {{ liker.last_name }}</div>
+                {% endfor %}
+            </div>
         </form>
         <br><br>
         <h4>Comments...&#128173;</h4><hr>
@@ -62,13 +70,6 @@
     </div>   
 </div>
 
-<!-- Hidden list of likers -->
-<div id="likers-list" class="bubble" style="display: none;">
-    {% for liker in likers %}
-        <div>{{ liker.first_name }} {{ liker.last_name }}</div>
-    {% endfor %}
-</div>
-
 <!-- Include jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -84,7 +85,6 @@
         });
     });
 </script>
-
 
 <style>
     .bubble {
