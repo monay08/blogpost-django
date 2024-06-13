@@ -1,4 +1,3 @@
-
 .container.rounded-3 {
         height: 65vh;
         background-image: url('/static/img/pixel.jpg');
@@ -6,4 +5,3 @@
         background-size: cover;
         background-position: center;
       }
-
