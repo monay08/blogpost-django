@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from datetime import datetime, date
+from django.utils import timezone
+from datetime import datetime, date, timedelta
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -36,5 +37,13 @@ class BlogPost(models.Model):
     def number_of_likes(self):
         return self.likes.count()
     
+class LoginAttempt(models.Model):
+    username = models.CharField(max_length=150)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    @classmethod
+    def get_recent_attempts(cls, username, minutes=5):
+        cutoff = timezone.now() - timedelta(minutes=minutes)
+        return cls.objects.filter(username=username, timestamp__gte=cutoff).count()
     
     

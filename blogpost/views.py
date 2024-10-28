@@ -1,10 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Comment, BlogPost
+from .models import Post, Comment, BlogPost, LoginAttempt
 from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.urls import reverse
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.utils import timezone
+from datetime import timedelta
 
 
 #def home(request):
@@ -20,6 +24,32 @@ def Likes(request, pk):
         post.likes.add(request.user)
         liked = True
     return HttpResponseRedirect(reverse('blogdetail', args=[str(pk)]))
+
+MAX_ATTEMPTS = 5  # Maximum allowed attempts
+TIMEFRAME = 5  # Time frame in minutes for allowed attempts
+
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        # Check recent login attempts
+        recent_attempts = LoginAttempt.get_recent_attempts(username, minutes=TIMEFRAME)
+        
+        if recent_attempts >= MAX_ATTEMPTS:
+            messages.error(request, "Too many failed login attempts. Please try again later.")
+            return redirect('login')
+        
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            # Log the failed attempt
+            LoginAttempt.objects.create(username=username)
+            messages.error(request, "Invalid credentials, please try again.")
+            return redirect('login')
+    return render(request, 'login.html')
 
 class Home(ListView):
     model = Post
@@ -88,3 +118,4 @@ class Featured(ListView):
     template_name = 'featured-blogs.html'
     ordering = ['-post_date']
     #ordering = ['-id']
+    
