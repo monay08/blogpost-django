@@ -55,5 +55,5 @@ If you want to contribute:
 3. Commit your changes and push them.
 4. Create a pull request.
 
-Contact
+### Contact 🤍
 For any questions or feedback, feel free to contact at daisyloumontante1@gmail.com
