@@ -61,7 +61,9 @@ These are the steps I have followed:
 ---
 
 ### Screenshots
-(Add screenshots of successful test runs and CI/CD execution here)
+Here is a screenshot of the successful CI/CD pipeline run:
+
+![Pipeline Success](screenshots/pipeline_success.png)
 
 ### Repository Link
 [Insert GitHub Repository Link Here]
