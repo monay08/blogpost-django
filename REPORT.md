@@ -2,7 +2,7 @@ I am Daisy Lou Montante. You can call me Monay.
 I created this repository 9 months ago.
 
 From this day (Feb 23, 2025) I performed some changes (created a Dockerfile, 
-adding READM.md, docker-compose.yml, and writing test case using pytest). 
+adding READM.md, docker-compose.yml, and writing test cases using pytest). 
 For my Activity 4.1 a hands-on assignment: Implementing CI/CD in Software Engineering.
 The subject is Software Engineering 2.
 
