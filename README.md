@@ -1,4 +1,4 @@
-😊This is my BlogPost project since my second year college. Subject: OOP
+😊Created for my Object-Oriented Programming sub final project "BlogPost Using Python Django"
 
 ### Description 🤍
 This project is a web application built using Django, designed to allow users to create, read, update, and delete blog posts. 
