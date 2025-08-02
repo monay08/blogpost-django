@@ -75,7 +75,8 @@ class Detail(DetailView):
         context['liked'] = liked
         context['likers'] = stuff.likes.all()
         return context
-    
+
+# monay08
 class Create(CreateView):
     model = Post
     form_class = PostForm
@@ -106,7 +107,7 @@ class Update(UpdateView):
 
     def get_success_url(self):
         # Redirect to the detail view of the updated post
-        return reverse('blogdetail', kwargs={'pk': self.object.pk})
+        return reverse('blogdetail', kwargs={'pk': self.object.pk})         # monay08
     
 class Delete(DeleteView):
     model = Post
@@ -118,4 +119,5 @@ class Featured(ListView):
     template_name = 'featured-blogs.html'
     ordering = ['-post_date']
     #ordering = ['-id']
-    
+
+# monay08

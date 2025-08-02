@@ -18,7 +18,7 @@ class Post(models.Model):
         return self.title + ' | ' + str(self.author)
     
     def get_absolute_url(self):
-        return reverse('blogdetail', args=(str(self.id)))
+        return reverse('blogdetail', args=(str(self.id)))               # monay08
     
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
@@ -44,6 +44,4 @@ class LoginAttempt(models.Model):
     @classmethod
     def get_recent_attempts(cls, username, minutes=5):
         cutoff = timezone.now() - timedelta(minutes=minutes)
-        return cls.objects.filter(username=username, timestamp__gte=cutoff).count()
-    
-    
+        return cls.objects.filter(username=username, timestamp__gte=cutoff).count()                 # monay08

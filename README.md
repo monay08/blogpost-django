@@ -1,4 +1,4 @@
-😊Created for my Object-Oriented Programming sub final project "BlogPost Using Python Django"
+😊This is my Objected-Oriented Programming project "BlogPost Using Python Django" in my second year college.
 
 ### Description 🤍
 This project is a web application built using Django, designed to allow users to create, read, update, and delete blog posts. 
@@ -11,12 +11,11 @@ It provides a simple yet powerful content management system where users can shar
 4. View detailed individual posts
 5. Commenting a blogpost
 6. Liking a blogpost
-7. Responsive design for desktop
 
 ### Technologies Used 🤍
---- Backend: Django (Python)
+--- Backend: Python Django
 --- Frontend: HTML, CSS, Bootstrap, JavaScript
---- Database: SQLite
+--- Database: SQLite3
 
 ### Version Control 🤍
 --- Git & GitHub

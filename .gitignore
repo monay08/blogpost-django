@@ -1,2 +1,15 @@
+__pycache__/
+venv/
 .env
 env
+# Ignore migrations
+migrations
+# Ignore media files
+media
+# Ignore Docker files
+Dockerfile
+docker-compose.yml
+# Ignore db files
+db.sqlite3   
+# Ignore macOS specific files
+.DS_Store
